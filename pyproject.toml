@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "django-projetointegrador"
+version = "0.1.0"
+description = "Backend do Projeto Integrador"
+authors = ["Erico Pieri <erico.pieri@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Django = "^4.1"
+djangorestframework = "^3.13.1"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^22.8.0", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

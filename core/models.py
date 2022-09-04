@@ -6,6 +6,9 @@ from datetime import datetime
 class Tipo_Usuario(models.Model):
     descricao = models.CharField(max_length=45, unique=True)
 
+    def __str__(self):
+        return self.descricao
+
 
 class Usuario(models.Model):
     id_tipousuario_FK = models.ForeignKey(Tipo_Usuario, on_delete=models.PROTECT)
@@ -18,6 +21,9 @@ class Usuario(models.Model):
     sobrenome = models.CharField(max_length=100)
     dt_nasc = models.DateField(default=datetime.now)
 
+    def __str__(self):
+        return f"{self.nome} {self.sobrenome} <{self.email}>"
+
 
 class Endereco(models.Model):
     id_usuario_FK = models.ForeignKey(Usuario, on_delete=models.PROTECT)
@@ -27,4 +33,7 @@ class Endereco(models.Model):
     logradouro = models.CharField(max_length=100)
     numero = models.IntegerField()
     complemento = models.CharField(max_length=30)
-    referencia = models.CharField(255, null=True)
+    referencia = models.CharField(max_length=255, null=True)
+
+    def __str__(self):
+        return f"{self.estado}, {self.municipio}"

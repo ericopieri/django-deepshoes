@@ -61,7 +61,7 @@ class Marca(models.Model):
 
 
 class Produto(models.Model):
-    preco = field_name = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    valor_unitario = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     nome = models.CharField(max_length=75)
     descricao = models.TextField()
     genero = models.CharField(max_length=10, default="Indefinido")
@@ -76,12 +76,12 @@ class Forma_Pagamento(models.Model):
 
 
 class Pedido(models.Model):
-    endereco_entrega = models.ForeignKey(Pedido, on_delete=models.PROTECT, null=True)
+    endereco_entrega = models.ForeignKey(Endereco, on_delete=models.PROTECT, null=True)
     forma_pagamento = models.ForeignKey(Forma_Pagamento, on_delete=models.PROTECT, null=True)
     usuario_dono = models.ForeignKey(Usuario, on_delete=models.PROTECT)
     data_entrega = models.DateField()
     data_pedido = models.DateField(default=datetime.now)
-    finalizado = BooleanField(default=False)
+    finalizado = models.BooleanField(default=False)
     qtd_parcela = models.IntegerField()
     valor_parcela = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     preco_total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)

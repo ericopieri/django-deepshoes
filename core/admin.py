@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from core.models import Tipo_Usuario, Usuario, Endereco
+
+
+admin.site.register(Tipo_Usuario)
+admin.site.register(Usuario)
+admin.site.register(Endereco)

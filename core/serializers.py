@@ -1,50 +1,56 @@
-from rest_framework import serializers
-from core.models import Endereco, Cartao, Cor, Tamanho, Marca, Produto, Pedido, Avaliacao
+from rest_framework.serializers import ModelSerializer
+from core.models import Endereco, Cartao, Cor, Tamanho, Marca, Produto, Pedido, Avaliacao, Forma_Pagamento
 
 
-class EnderecoSerializer(serializers.Serializer):
+class EnderecoSerializer(ModelSerializer):
     class Meta:
         model = Endereco
         fields = "__all__"
 
 
-class CartaoSerializer(serializers.Serializer):
+class CartaoSerializer(ModelSerializer):
     class Meta:
         model = Cartao
         fields = "__all__"
 
+
+class Forma_PagamentoSerializer(ModelSerializer):
+    class Meta:
+        model = Forma_Pagamento
+        fields = "__all__"
+
     
-class CorSerializer(serializers.Serializer):
+class CorSerializer(ModelSerializer):
     class Meta:
         model = Cor
         fields = "__all__"
 
 
-class TamanhoSerializer(serializers.Serializer):
+class TamanhoSerializer(ModelSerializer):
     class Meta:
         model = Tamanho
         fields = "__all__"
 
 
-class MarcaSerializer(serializers.Serializer):
+class MarcaSerializer(ModelSerializer):
     class Meta:
         model = Marca
         fields = "__all__"
 
 
-class ProdutoSerializer(serializers.Serializer):
+class ProdutoSerializer(ModelSerializer):
     class Meta:
         model = Produto
         fields = "__all__"
 
 
-class PedidoSerializer(serializers.Serializer):
+class PedidoSerializer(ModelSerializer):
     class Meta:
         model = Pedido
         fields = "__all__"
 
 
-class AvaliacaoSerializer(serializers.Serializer):
+class AvaliacaoSerializer(ModelSerializer):
     class Meta:
         model = Avaliacao
         fields = "__all__"

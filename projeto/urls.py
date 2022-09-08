@@ -12,9 +12,11 @@ from core.views import (
     Forma_PagamentoViewSet,
     PedidoViewSet,
     AvaliacaoViewSet,
+    UsuarioViewSet,
 )
 
 router = DefaultRouter()
+router.register(r"usuarios", UsuarioViewSet)
 router.register(r"enderecos", EnderecoViewSet)
 router.register(r"cartoes", CartaoViewSet)
 router.register(r"cores", CorViewSet)

@@ -1,5 +1,11 @@
 from rest_framework.serializers import ModelSerializer
-from core.models import Endereco, Cartao, Cor, Tamanho, Marca, Produto, Pedido, Avaliacao, Forma_Pagamento
+from core.models import Usuario, Endereco, Cartao, Cor, Tamanho, Marca, Produto, Pedido, Avaliacao, Forma_Pagamento
+
+
+class UsuarioSerializer(ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = "__all__"
 
 
 class EnderecoSerializer(ModelSerializer):

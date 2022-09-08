@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 
-from core.serializers import UsuarioSerializer, EnderecoSerializer, CartaoSerializer, CorSerializer, TamanhoSerializer, MarcaSerializer, Forma_PagamentoSerializer, PedidoSerializer, AvaliacaoSerializer
-from core.models import Usuario, Endereco, Cartao, Cor, Tamanho, Marca, Forma_Pagamento, Pedido, Avaliacao
+from core.serializers import ProdutoSerializer, UsuarioSerializer, EnderecoSerializer, CartaoSerializer, CorSerializer, TamanhoSerializer, MarcaSerializer, Forma_PagamentoSerializer, PedidoSerializer, AvaliacaoSerializer
+from core.models import Usuario, Endereco, Cartao, Cor, Tamanho, Marca, Forma_Pagamento, Produto, Pedido, Avaliacao
 
 
 class UsuarioViewSet(ModelViewSet):
@@ -38,6 +38,11 @@ class MarcaViewSet(ModelViewSet):
 class Forma_PagamentoViewSet(ModelViewSet):
     queryset = Forma_Pagamento.objects.all()
     serializer_class = Forma_PagamentoSerializer
+
+
+class ProdutoViewSet(ModelViewSet):
+    queryset = Produto
+    serializer_class = ProdutoSerializer
 
 
 class PedidoViewSet(ModelViewSet):

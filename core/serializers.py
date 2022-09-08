@@ -1,5 +1,6 @@
+from dataclasses import field
 from rest_framework.serializers import ModelSerializer
-from core.models import Usuario, Endereco, Cartao, Cor, Tamanho, Marca, Produto, Pedido, Avaliacao, Forma_Pagamento
+from core.models import Usuario, Endereco, Cartao, Cor, Tamanho, Marca, Produto, Pedido, Avaliacao, Forma_Pagamento, Ped_Pro
 
 
 class UsuarioSerializer(ModelSerializer):
@@ -47,6 +48,12 @@ class MarcaSerializer(ModelSerializer):
 class ProdutoSerializer(ModelSerializer):
     class Meta:
         model = Produto
+        fields = "__all__"
+
+
+class Ped_ProSerializer(ModelSerializer):
+    class Meta:
+        model = Ped_Pro
         fields = "__all__"
 
 

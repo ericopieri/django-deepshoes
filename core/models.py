@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth import get_user_model
 
 from django.utils import timezone
-from datetime import datetime
+from datetime import datetime, date
 
 
 class UsuarioManager(BaseUserManager):
@@ -148,7 +148,7 @@ class Pedido(models.Model):
         get_user_model(), on_delete=models.PROTECT, related_name="pedidos"
     )
     data_entrega = models.DateField()
-    data_pedido = models.DateField(default=datetime.now)
+    data_pedido = models.DateField(default=date.today)
     finalizado = models.BooleanField(default=False)
     qtd_parcela = models.IntegerField()
     valor_parcela = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
@@ -170,7 +170,7 @@ class Ped_Pro(models.Model):
     data_entrada = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
-        return f"{self.produto}, {self.qtd_estoque}"
+        return f"{self.produto}, {self.qtd_produto}"
 
 
 class Avaliacao(models.Model):

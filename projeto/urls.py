@@ -12,6 +12,7 @@ from core.views import (
     MarcaViewSet,
     Forma_PagamentoViewSet,
     ProdutoViewSet,
+    Ped_ProViewSet,
     PedidoViewSet,
     AvaliacaoViewSet
 )
@@ -22,9 +23,10 @@ router.register(r"enderecos", EnderecoViewSet)
 router.register(r"cartoes", CartaoViewSet)
 router.register(r"cores", CorViewSet)
 router.register(r"forma_pagamento", Forma_PagamentoViewSet)
-router.register(r"produtos", ProdutoViewSet)
 router.register(r"marcas", MarcaViewSet)
 router.register(r"tamanhos", TamanhoViewSet)
+router.register(r"produtos", ProdutoViewSet)
+router.register(r"itens_pedido", Ped_ProViewSet)
 router.register(r"pedidos", PedidoViewSet)
 router.register(r"avaliacoes", AvaliacaoViewSet)
 

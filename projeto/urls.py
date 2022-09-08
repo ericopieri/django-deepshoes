@@ -3,20 +3,29 @@ from django.urls import include, path
 
 from rest_framework.routers import DefaultRouter
 
-from core.views import EnderecoViewSet, CartaoViewSet, CorViewSet, TamanhoViewSet, MarcaViewSet, Forma_PagamentoViewSet, PedidoViewSet, AvaliacaoViewSet
+from core.views import (
+    EnderecoViewSet,
+    CartaoViewSet,
+    CorViewSet,
+    TamanhoViewSet,
+    MarcaViewSet,
+    Forma_PagamentoViewSet,
+    PedidoViewSet,
+    AvaliacaoViewSet,
+)
 
 router = DefaultRouter()
-router.register(r'enderecos', EnderecoViewSet)
-router.register(r'cartoes', CartaoViewSet)
-router.register(r'cores', CorViewSet)
-router.register(r'forma_pagamento', Forma_PagamentoViewSet)
-router.register(r'marcas', MarcaViewSet)
-router.register(r'tamanhos', TamanhoViewSet)
-router.register(r'peidos', PedidoViewSet)
-router.register(r'avaliacoes', AvaliacaoViewSet)
+router.register(r"enderecos", EnderecoViewSet)
+router.register(r"cartoes", CartaoViewSet)
+router.register(r"cores", CorViewSet)
+router.register(r"forma_pagamento", Forma_PagamentoViewSet)
+router.register(r"marcas", MarcaViewSet)
+router.register(r"tamanhos", TamanhoViewSet)
+router.register(r"pedidos", PedidoViewSet)
+router.register(r"avaliacoes", AvaliacaoViewSet)
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path("admin/", admin.site.urls),
+    path("", include(router.urls)),
 ]

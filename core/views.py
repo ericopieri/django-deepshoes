@@ -41,7 +41,7 @@ class Forma_PagamentoViewSet(ModelViewSet):
 
 
 class ProdutoViewSet(ModelViewSet):
-    queryset = Produto
+    queryset = Produto.objects.all()
     serializer_class = ProdutoSerializer
 
 

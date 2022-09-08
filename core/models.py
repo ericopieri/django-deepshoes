@@ -7,23 +7,28 @@ from datetime import datetime
 
 
 class UsuarioManager(BaseUserManager):
-    
     def _create_user(self, email, password, admin, super_usuario, **extra_fields):
         now = timezone.now()
         email = self.normalize_email(email)
-        usuario = self.model(email=email, admin=admin, super_usuario=super_usuario, ativo=True, last_login=now, data_criacao=now, **extra_fields)
+        usuario = self.model(
+            email=email,
+            admin=admin,
+            super_usuario=super_usuario,
+            ativo=True,
+            last_login=now,
+            data_criacao=now,
+            **extra_fields,
+        )
         usuario.set_password(password)
         usuario.save(using=self._db)
         return usuario
 
-
     def create_user(self, email=None, password=None, **extra_fields):
         return self._create_user(email, password, False, False, **extra_fields)
 
-
     def create_superuser(self, email, password, **extra_fields):
-        user=self._create_user(email, password, True, True, **extra_fields)
-        user.ativo=True
+        user = self._create_user(email, password, True, True, **extra_fields)
+        user.ativo = True
         user.save(using=self._db)
         return user
 
@@ -41,7 +46,7 @@ class Usuario(AbstractBaseUser):
     super_usuario = models.BooleanField(default=False)
     data_criacao = models.DateTimeField(default=datetime.now)
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
 
     objects = UsuarioManager()
 
@@ -49,7 +54,7 @@ class Usuario(AbstractBaseUser):
         return f"{self.nome} {self.sobrenome} <{self.email}>"
 
     def get_nome_completo(self):
-        return f'{self.nome} {self.sobrenome}'
+        return f"{self.nome} {self.sobrenome}"
 
     @property
     def is_staff(self):
@@ -85,7 +90,7 @@ class Cartao(models.Model):
     nome_dono = models.CharField(max_length=120)
 
     def __str__(self):
-        return f'{self.bandeira}, **** **** **** **{self.numero_cartao[-2::]} - {self.nome_dono}'
+        return f"{self.bandeira}, **** **** **** **{self.numero_cartao[-2::]} - {self.nome_dono}"
 
 
 class Cor(models.Model):
@@ -99,7 +104,7 @@ class Tamanho(models.Model):
     descricao = models.IntegerField()
 
     def __str__(self):
-        return f'{self.descricao}'
+        return f"{self.descricao}"
 
 
 class Marca(models.Model):
@@ -116,24 +121,32 @@ class Produto(models.Model):
     genero = models.CharField(max_length=10, default="Indefinido")
     qtd_estoque = models.IntegerField()
     cor = models.ForeignKey(Cor, on_delete=models.PROTECT, related_name="produtos")
-    tamanho = models.ForeignKey(Tamanho, on_delete=models.PROTECT, related_name="produtos")
+    tamanho = models.ForeignKey(
+        Tamanho, on_delete=models.PROTECT, related_name="produtos"
+    )
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT, related_name="produtos")
 
     def __str__(self):
-        return f'{self.nome} - {self.genero}, {self.marca}, {self.cor}, {self.tamanho}'
+        return f"{self.nome} - {self.genero}, {self.marca}, {self.cor}, {self.tamanho}"
 
 
 class Forma_Pagamento(models.Model):
     descricao = models.CharField(max_length=45, unique=True)
-    
+
     def __str__(self):
         return self.descricao
 
 
 class Pedido(models.Model):
-    endereco_entrega = models.ForeignKey(Endereco, on_delete=models.PROTECT, null=True, related_name="pedidos")
-    forma_pagamento = models.ForeignKey(Forma_Pagamento, on_delete=models.PROTECT, null=True, related_name="pedidos")
-    usuario_dono = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, related_name="pedidos")
+    endereco_entrega = models.ForeignKey(
+        Endereco, on_delete=models.PROTECT, null=True, related_name="pedidos"
+    )
+    forma_pagamento = models.ForeignKey(
+        Forma_Pagamento, on_delete=models.PROTECT, null=True, related_name="pedidos"
+    )
+    usuario_dono = models.ForeignKey(
+        get_user_model(), on_delete=models.PROTECT, related_name="pedidos"
+    )
     data_entrega = models.DateField()
     data_pedido = models.DateField(default=datetime.now)
     finalizado = models.BooleanField(default=False)
@@ -143,26 +156,34 @@ class Pedido(models.Model):
     itens = models.ManyToManyField(Produto, related_name="pedidos", through="Ped_Pro")
 
     def __str__(self):
-        return f'{self.preco_total}'
+        return f"{self.preco_total}"
 
 
 class Ped_Pro(models.Model):
-    produto = models.ForeignKey(Produto, on_delete=models.PROTECT, related_name="ped_pros")
-    pedido = models.ForeignKey(Pedido, on_delete=models.PROTECT, related_name="ped_pros")
+    produto = models.ForeignKey(
+        Produto, on_delete=models.PROTECT, related_name="ped_pros"
+    )
+    pedido = models.ForeignKey(
+        Pedido, on_delete=models.PROTECT, related_name="ped_pros"
+    )
     qtd_produto = models.IntegerField(default=1)
     data_entrada = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
-        return f'{self.produto}, {self.qtd_estoque}'
+        return f"{self.produto}, {self.qtd_estoque}"
 
 
 class Avaliacao(models.Model):
-    produto_avaliado = models.ForeignKey(Ped_Pro, on_delete=models.PROTECT, related_name="avaliacoes")
-    usuario = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, related_name="avaliacoes")
+    produto_avaliado = models.ForeignKey(
+        Ped_Pro, on_delete=models.PROTECT, related_name="avaliacoes"
+    )
+    usuario = models.ForeignKey(
+        get_user_model(), on_delete=models.PROTECT, related_name="avaliacoes"
+    )
     nota = models.IntegerField()
     recomendou = models.BooleanField()
     texto = models.TextField()
     data_avaliacao = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
-        return f'{self.produto_avaliado}, {self.usuario}'
+        return f"{self.produto_avaliado}, {self.usuario}"

@@ -159,7 +159,7 @@ class Pedido(models.Model):
     itens = models.ManyToManyField(Produto, related_name="pedidos", through="Ped_Pro")
 
     def __str__(self):
-        return f"{self.preco_total}"
+        return f"{self.preco_total} - {self.data_pedido} - {self.usuario}"
 
 
 class Ped_Pro(models.Model):

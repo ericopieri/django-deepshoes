@@ -7,7 +7,7 @@ from datetime import datetime, date
 
 
 class UsuarioManager(BaseUserManager):
-    def _create_user(self, email, password, admin, super_usuario, **extra_fields):
+    def _create_user(self, email, password, admin, super_usuario, staff, **extra_fields):
         now = timezone.now()
         email = self.normalize_email(email)
         usuario = self.model(
@@ -24,10 +24,10 @@ class UsuarioManager(BaseUserManager):
         return usuario
 
     def create_user(self, email=None, password=None, **extra_fields):
-        return self._create_user(email, password, False, False, **extra_fields)
+        return self._create_user(email, password, False, False, False, **extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
-        user = self._create_user(email, password, True, True, **extra_fields)
+        user = self._create_user(email, password, True, True, True, **extra_fields)
         user.ativo = True
         user.save(using=self._db)
         return user
@@ -44,6 +44,7 @@ class Usuario(AbstractBaseUser):
     ativo = models.BooleanField(default=True)
     admin = models.BooleanField(default=False)
     super_usuario = models.BooleanField(default=False)
+    staff = models.BooleanField(default=False)
     data_criacao = models.DateTimeField(default=datetime.now)
 
     USERNAME_FIELD = "email"

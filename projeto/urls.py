@@ -3,6 +3,9 @@ from django.urls import include, path
 
 from rest_framework.routers import DefaultRouter
 
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+
 from core.views import (
     UsuarioViewSet,
     EnderecoViewSet,
@@ -33,5 +36,7 @@ router.register(r"api/avaliacoes", AvaliacaoViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("token/", TokenObtainPairView.as_view()),
+    path("token/refresh", TokenRefreshView.as_view()),
     path("", include(router.urls)),
 ]

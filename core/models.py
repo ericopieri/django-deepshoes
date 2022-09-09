@@ -81,7 +81,7 @@ class Endereco(models.Model):
     referencia = models.CharField(max_length=255, null=True)
 
     def __str__(self):
-        return f"{self.estado}, {self.municipio}, {self.bairro} - {self.usuario}"
+        return f"{self.estado}, {self.municipio}, {self.bairro}, {self.logradouro}, {self.numero} - {self.usuario}"
 
 
 class Cartao(models.Model):

@@ -18,20 +18,20 @@ from core.views import (
 )
 
 router = DefaultRouter()
-router.register(r"usuarios", UsuarioViewSet)
-router.register(r"enderecos", EnderecoViewSet)
-router.register(r"cartoes", CartaoViewSet)
-router.register(r"cores", CorViewSet)
-router.register(r"forma_pagamento", Forma_PagamentoViewSet)
-router.register(r"marcas", MarcaViewSet)
-router.register(r"tamanhos", TamanhoViewSet)
-router.register(r"produtos", ProdutoViewSet)
-router.register(r"itens_pedido", Ped_ProViewSet)
-router.register(r"pedidos", PedidoViewSet)
-router.register(r"avaliacoes", AvaliacaoViewSet)
+router.register(r"api/usuarios", UsuarioViewSet)
+router.register(r"api/enderecos", EnderecoViewSet)
+router.register(r"api/cartoes", CartaoViewSet)
+router.register(r"api/cores", CorViewSet)
+router.register(r"api/forma_pagamento", Forma_PagamentoViewSet)
+router.register(r"api/marcas", MarcaViewSet)
+router.register(r"api/tamanhos", TamanhoViewSet)
+router.register(r"api/produtos", ProdutoViewSet)
+router.register(r"api/itens_pedido", Ped_ProViewSet)
+router.register(r"api/pedidos", PedidoViewSet)
+router.register(r"api/avaliacoes", AvaliacaoViewSet)
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", include(router.urls)),
+    path("", include(router.urls)),
 ]

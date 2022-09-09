@@ -48,6 +48,8 @@ class Usuario(AbstractBaseUser):
 
     USERNAME_FIELD = "email"
 
+    REQUIRED_FIELDS = ["cpf", "sexo", "contato", "nome", "sobrenome", "dt_nasc"]
+
     objects = UsuarioManager()
 
     def __str__(self):

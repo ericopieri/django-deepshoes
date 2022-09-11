@@ -1,12 +1,29 @@
 from dataclasses import field
+from django.contrib.auth.hashers import make_password
+
 from rest_framework.serializers import ModelSerializer
-from core.models import Usuario, Endereco, Cartao, Cor, Tamanho, Marca, Produto, Pedido, Avaliacao, Forma_Pagamento, Ped_Pro
+from core.models import (
+    Usuario,
+    Endereco,
+    Cartao,
+    Cor,
+    Tamanho,
+    Marca,
+    Produto,
+    Pedido,
+    Avaliacao,
+    Forma_Pagamento,
+    Ped_Pro,
+)
 
 
 class UsuarioSerializer(ModelSerializer):
     class Meta:
         model = Usuario
         fields = "__all__"
+
+    def validate_password(self, value: str) -> str:
+        return make_password(value)
 
 
 class EnderecoSerializer(ModelSerializer):
@@ -26,7 +43,7 @@ class Forma_PagamentoSerializer(ModelSerializer):
         model = Forma_Pagamento
         fields = "__all__"
 
-    
+
 class CorSerializer(ModelSerializer):
     class Meta:
         model = Cor

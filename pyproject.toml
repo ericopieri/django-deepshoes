@@ -9,6 +9,7 @@ python = "^3.8"
 Django = "^4.1"
 djangorestframework = "^3.13.1"
 djangorestframework-simplejwt = "^5.2.0"
+flake8 = "^5.0.4"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^22.8.0", allow-prereleases = true}

@@ -7,7 +7,9 @@ from datetime import datetime, date
 
 
 class UsuarioManager(BaseUserManager):
-    def _create_user(self, email, password, admin, super_usuario, staff, **extra_fields):
+    def _create_user(
+        self, email, password, admin, super_usuario, staff, **extra_fields
+    ):
         now = timezone.now()
         email = self.normalize_email(email)
         usuario = self.model(
@@ -156,19 +158,14 @@ class Pedido(models.Model):
     qtd_parcela = models.IntegerField()
     valor_parcela = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     preco_total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    itens = models.ManyToManyField(Produto, related_name="pedidos", through="Ped_Pro")
 
     def __str__(self):
-        return f"{self.preco_total} - {self.data_pedido} - {self.usuario}"
+        return f"{self.preco_total} - {self.data_pedido} - {self.usuario_dono}"
 
 
-class Ped_Pro(models.Model):
-    produto = models.ForeignKey(
-        Produto, on_delete=models.PROTECT, related_name="ped_pros"
-    )
-    pedido = models.ForeignKey(
-        Pedido, on_delete=models.PROTECT, related_name="ped_pros"
-    )
+class ItensCompra(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name="+")
+    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name="itens")
     qtd_produto = models.IntegerField(default=1)
     data_entrada = models.DateTimeField(default=datetime.now)
 
@@ -178,7 +175,7 @@ class Ped_Pro(models.Model):
 
 class Avaliacao(models.Model):
     produto_avaliado = models.ForeignKey(
-        Ped_Pro, on_delete=models.PROTECT, related_name="avaliacoes"
+        ItensCompra, on_delete=models.PROTECT, related_name="avaliacoes"
     )
     usuario = models.ForeignKey(
         get_user_model(), on_delete=models.PROTECT, related_name="avaliacoes"

@@ -14,9 +14,9 @@ from core.views import (
     MarcaViewSet,
     Forma_PagamentoViewSet,
     ProdutoViewSet,
-    Ped_ProViewSet,
+    ItensCompraViewSet,
     PedidoViewSet,
-    AvaliacaoViewSet
+    AvaliacaoViewSet,
 )
 
 router = DefaultRouter()
@@ -28,7 +28,7 @@ router.register(r"api/forma_pagamento", Forma_PagamentoViewSet)
 router.register(r"api/marcas", MarcaViewSet)
 router.register(r"api/tamanhos", TamanhoViewSet)
 router.register(r"api/produtos", ProdutoViewSet)
-router.register(r"api/itens_pedido", Ped_ProViewSet)
+router.register(r"api/itens_pedido", ItensCompraViewSet)
 router.register(r"api/pedidos", PedidoViewSet)
 router.register(r"api/avaliacoes", AvaliacaoViewSet)
 

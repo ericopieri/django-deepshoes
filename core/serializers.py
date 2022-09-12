@@ -1,7 +1,7 @@
 from dataclasses import field
 from django.contrib.auth.hashers import make_password
 
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from core.models import (
     Usuario,
     Endereco,
@@ -17,7 +17,7 @@ from core.models import (
 )
 
 
-class UsuarioSerializer(ModelSerializer):
+class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields = "__all__"
@@ -31,55 +31,61 @@ class UsuarioSerializer(ModelSerializer):
         return instance
 
 
-class EnderecoSerializer(ModelSerializer):
+class EnderecoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Endereco
         fields = "__all__"
 
 
-class CartaoSerializer(ModelSerializer):
+class CartaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cartao
         fields = "__all__"
 
 
-class Forma_PagamentoSerializer(ModelSerializer):
+class Forma_PagamentoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Forma_Pagamento
         fields = "__all__"
 
 
-class CorSerializer(ModelSerializer):
+class CorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cor
         fields = "__all__"
 
 
-class TamanhoSerializer(ModelSerializer):
+class TamanhoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tamanho
         fields = "__all__"
 
 
-class MarcaSerializer(ModelSerializer):
+class MarcaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Marca
         fields = "__all__"
 
 
-class ProdutoSerializer(ModelSerializer):
+class ProdutoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Produto
         fields = "__all__"
 
 
-class ItensCompraSerializer(ModelSerializer):
+class ItensCompraSerializer(serializers.ModelSerializer):
+    sub_total = serializers.SerializerMethodField()
+
     class Meta:
         model = ItensCompra
         fields = "__all__"
+        depth = 1
+
+    def get_sub_total(self, instance):
+        return instance.qtd_produto * instance.produto.valor_unitario
 
 
-class PedidoSerializer(ModelSerializer):
+class PedidoSerializer(serializers.ModelSerializer):
     itens = ItensCompraSerializer(many=True)
 
     class Meta:
@@ -87,7 +93,7 @@ class PedidoSerializer(ModelSerializer):
         fields = "__all__"
 
 
-class AvaliacaoSerializer(ModelSerializer):
+class AvaliacaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Avaliacao
         fields = "__all__"

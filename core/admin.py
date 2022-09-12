@@ -10,7 +10,7 @@ from core.models import (
     Produto,
     Forma_Pagamento,
     Pedido,
-    Ped_Pro,
+    ItensCompra,
     Avaliacao,
 )
 
@@ -27,7 +27,7 @@ admin.site.register(Avaliacao)
 
 
 class ItensInline(admin.StackedInline):
-    model = Ped_Pro
+    model = ItensCompra
 
 
 @admin.register(Pedido)

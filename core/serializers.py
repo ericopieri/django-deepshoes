@@ -13,7 +13,7 @@ from core.models import (
     Pedido,
     Avaliacao,
     Forma_Pagamento,
-    Ped_Pro,
+    ItensCompra,
 )
 
 
@@ -73,14 +73,14 @@ class ProdutoSerializer(ModelSerializer):
         fields = "__all__"
 
 
-class Ped_ProSerializer(ModelSerializer):
+class ItensCompraSerializer(ModelSerializer):
     class Meta:
-        model = Ped_Pro
+        model = ItensCompra
         fields = "__all__"
 
 
 class PedidoSerializer(ModelSerializer):
-    itens = Ped_ProSerializer(many=True)
+    itens = ItensCompraSerializer(many=True)
 
     class Meta:
         model = Pedido

@@ -22,8 +22,13 @@ class UsuarioSerializer(ModelSerializer):
         model = Usuario
         fields = "__all__"
 
-    def validate_password(self, value: str) -> str:
-        return make_password(value)
+    def create(self, validated_data):
+        password = validated_data.pop("password", None)
+        instance = self.Meta.model(**validated_data)
+        if password is not None:
+            instance.set_password(password)
+        instance.save()
+        return instance
 
 
 class EnderecoSerializer(ModelSerializer):
@@ -75,6 +80,8 @@ class Ped_ProSerializer(ModelSerializer):
 
 
 class PedidoSerializer(ModelSerializer):
+    itens = Ped_ProSerializer(many=True)
+
     class Meta:
         model = Pedido
         fields = "__all__"

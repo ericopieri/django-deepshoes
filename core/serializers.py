@@ -68,6 +68,10 @@ class MarcaSerializer(serializers.ModelSerializer):
 
 
 class ProdutoSerializer(serializers.ModelSerializer):
+    cor = serializers.CharField(source="cor.descricao")
+    tamanho = serializers.CharField(source="tamanho.descricao")
+    marca = serializers.CharField(source="marca.descricao")
+
     class Meta:
         model = Produto
         fields = "__all__"
@@ -85,12 +89,31 @@ class ItensCompraSerializer(serializers.ModelSerializer):
         return instance.qtd_produto * instance.produto.valor_unitario
 
 
+class ItensCompraSerializerNested(serializers.ModelSerializer):
+    sub_total = serializers.SerializerMethodField()
+    produto = ProdutoSerializer()
+
+    class Meta:
+        model = ItensCompra
+        fields = (
+            "produto",
+            "qtd_produto",
+            "sub_total",
+            "data_entrada",
+        )
+        depth = 1
+
+    def get_sub_total(self, obj):
+        return obj.qtd_produto * obj.produto.valor_unitario
+
+
 class PedidoSerializer(serializers.ModelSerializer):
-    itens = ItensCompraSerializer(many=True)
+    itens = ItensCompraSerializerNested(many=True)
 
     class Meta:
         model = Pedido
         fields = "__all__"
+        depth = 1
 
 
 class AvaliacaoSerializer(serializers.ModelSerializer):

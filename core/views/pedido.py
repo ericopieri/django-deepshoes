@@ -13,4 +13,4 @@ class PedidoViewSet(ModelViewSet):
         if usuario.admin:
             return Pedido.objects.all()
 
-        return Pedido.objects.filter(usuario=usuario)
+        return Pedido.objects.filter(usuario_dono=usuario)

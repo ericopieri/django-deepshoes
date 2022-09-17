@@ -5,5 +5,12 @@ from core.serializers import PedidoSerializer
 
 
 class PedidoViewSet(ModelViewSet):
-    queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
+
+    def get_queryset(self):
+        usuario = self.request.user
+
+        if usuario.admin:
+            return Pedido.objects.all()
+
+        return Pedido.objects.filter(usuario=usuario)

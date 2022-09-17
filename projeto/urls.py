@@ -29,7 +29,7 @@ router.register(r"api/marcas", MarcaViewSet)
 router.register(r"api/tamanhos", TamanhoViewSet)
 router.register(r"api/produtos", ProdutoViewSet)
 router.register(r"api/itens_pedido", ItensCompraViewSet)
-router.register(r"api/pedidos", PedidoViewSet)
+router.register(r"api/pedidos", PedidoViewSet, basename="pedidos")
 router.register(r"api/avaliacoes", AvaliacaoViewSet)
 
 

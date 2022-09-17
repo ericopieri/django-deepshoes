@@ -1,7 +1,7 @@
 from django.db import models
 
-from django.contrib.auth import get_user_model
 from core.models.itens_compra import ItensCompra
+from core.models.usuario import Usuario
 
 from datetime import datetime
 
@@ -11,7 +11,7 @@ class Avaliacao(models.Model):
         ItensCompra, on_delete=models.PROTECT, related_name="avaliacoes"
     )
     usuario = models.ForeignKey(
-        get_user_model(), on_delete=models.PROTECT, related_name="avaliacoes"
+        Usuario, on_delete=models.PROTECT, related_name="avaliacoes"
     )
     nota = models.IntegerField()
     recomendou = models.BooleanField()

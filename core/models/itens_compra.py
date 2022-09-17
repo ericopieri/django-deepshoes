@@ -3,6 +3,8 @@ from django.db import models
 from core.models.pedido import Pedido
 from core.models.produto import Produto
 
+from datetime import datetime
+
 
 class ItensCompra(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name="+")

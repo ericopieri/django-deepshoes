@@ -1,10 +1,10 @@
 from django.db import models
 
-from django.contrib.auth import get_user_model
+from core.models.usuario import Usuario
 
 
 class Endereco(models.Model):
-    usuario = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
+    usuario = models.ForeignKey(Usuario, on_delete=models.PROTECT)
     estado = models.CharField(max_length=2)
     municipio = models.CharField(max_length=75)
     bairro = models.CharField(max_length=75)

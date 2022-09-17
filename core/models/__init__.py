@@ -8,4 +8,4 @@ from .marca import Marca
 from .pedido import Pedido
 from .produto import Produto
 from .tamanho import Tamanho
-from .usuario import Usuario
+from .usuario import Usuario, UsuarioManager

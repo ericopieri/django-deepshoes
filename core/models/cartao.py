@@ -1,10 +1,10 @@
 from django.db import models
 
-from django.contrib.auth import get_user_model
+from core.models.usuario import Usuario
 
 
 class Cartao(models.Model):
-    usuario_dono = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
+    usuario_dono = models.ForeignKey(Usuario, on_delete=models.PROTECT)
     numero_cartao = models.CharField(max_length=16, unique=True)
     cvv = models.IntegerField()
     data_vencimento = models.CharField(max_length=5)

@@ -1,6 +1,6 @@
 from django.db import models
 
-from django.contrib.auth import get_user_model
+from core.models.usuario import Usuario
 from core.models.endereco import Endereco
 from core.models.forma_pagamento import Forma_Pagamento
 
@@ -15,7 +15,7 @@ class Pedido(models.Model):
         Forma_Pagamento, on_delete=models.PROTECT, null=True, related_name="pedidos"
     )
     usuario_dono = models.ForeignKey(
-        get_user_model(), on_delete=models.PROTECT, related_name="pedidos"
+        Usuario, on_delete=models.PROTECT, related_name="pedidos"
     )
     data_entrega = models.DateField()
     data_pedido = models.DateField(default=date.today)

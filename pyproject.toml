@@ -13,6 +13,7 @@ flake8 = "^5.0.4"
 black = "^22.8.0"
 django-cors-headers = "^3.13.0"
 django-storages = "^1.13.1"
+boto3 = "^1.24.80"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^22.8.0", allow-prereleases = true}

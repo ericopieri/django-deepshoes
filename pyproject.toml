@@ -12,6 +12,7 @@ djangorestframework-simplejwt = "^5.2.0"
 flake8 = "^5.0.4"
 black = "^22.8.0"
 django-cors-headers = "^3.13.0"
+django-storages = "^1.13.1"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^22.8.0", allow-prereleases = true}

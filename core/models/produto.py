@@ -16,6 +16,7 @@ class Produto(models.Model):
         Tamanho, on_delete=models.PROTECT, related_name="produtos"
     )
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT, related_name="produtos")
+    imagem = models.ImageField()
 
     def __str__(self):
         return f"{self.nome} - {self.genero}, {self.marca}, {self.cor}, {self.tamanho}"

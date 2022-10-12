@@ -2,6 +2,8 @@ from pathlib import Path
 
 from datetime import timedelta
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -10,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure--0_m4(cwop@d)9xcsm8urk(wvl@#el6(3d*h^b=^5r_6bpngj#"
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -33,6 +35,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "core",
     "rest_framework_simplejwt",
+    "storages",
 ]
 
 REST_FRAMEWORK = {
@@ -132,3 +135,15 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# AMAZON S3
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+
+AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+
+AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
+
+AWS_QUERYSTRING_AUTH = False

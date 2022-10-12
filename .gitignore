@@ -199,3 +199,8 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,django
 db.sqlite3
 core/migrations/0001_initial.py
+
+
+# Variaveis de ambiente
+
+.env

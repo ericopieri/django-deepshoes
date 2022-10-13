@@ -372,6 +372,14 @@ docs = ["furo (>=2021.7.5b38)", "proselint (>=0.10.2)", "sphinx-autodoc-typehint
 test = ["appdirs (==1.4.4)", "pytest-cov (>=2.7)", "pytest-mock (>=3.6)", "pytest (>=6)"]
 
 [[package]]
+name = "psycopg2"
+version = "2.9.4"
+description = "psycopg2 - Python-PostgreSQL Database Adapter"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "pycodestyle"
 version = "2.9.1"
 description = "Python style guide checker"
@@ -539,7 +547,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "30399dfcd02ea7b72af5f7719e2b0df5340b4cf8816f7553b0a4a2ade118447d"
+content-hash = "759ae1381e11a623e49db2e4e2ac98f1254db6d128418465057b503192a52e53"
 
 [metadata.files]
 asgiref = [
@@ -577,6 +585,7 @@ oauthlib = []
 pathspec = []
 pillow = []
 platformdirs = []
+psycopg2 = []
 pycodestyle = []
 pycparser = []
 pyflakes = []

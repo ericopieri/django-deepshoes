@@ -10,7 +10,7 @@ class ProdutoViewSet(ModelViewSet):
     serializer_class = ProdutoSerializer
     pagination_class = ProdutoPagination
 
-    def get_query_set(self):
+    def get_queryset(self):
         sexo = self.request.query_params.get("sexo")
 
         if sexo is None:

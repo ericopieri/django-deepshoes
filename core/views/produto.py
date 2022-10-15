@@ -13,7 +13,7 @@ class ProdutoViewSet(ModelViewSet):
     def get_query_set(self):
         sexo = self.request.query_params.get("sexo")
 
-        if sexo:
+        if sexo is None:
             return Produto.objects.filter(sexo=sexo)
         else:
             return Produto.objects.all()

@@ -6,10 +6,14 @@ from core.serializers import UsuarioSerializer
 
 
 class UsuarioViewSet(ModelViewSet):
-    queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
 
     def get_permissions(self):
         if self.action == "create":
             return [AllowAny()]
         return [IsAuthenticated()]
+
+    def get_queryset(self):
+        usuario = self.request.user
+
+        return Usuario.objects.filter(email=usuario.email)

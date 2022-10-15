@@ -20,7 +20,7 @@ from core.views import (
 )
 
 router = DefaultRouter()
-router.register(r"api/usuarios", UsuarioViewSet)
+router.register(r"api/usuarios", UsuarioViewSet, basename="usuarios")
 router.register(r"api/enderecos", EnderecoViewSet)
 router.register(r"api/cartoes", CartaoViewSet)
 router.register(r"api/cores", CorViewSet)

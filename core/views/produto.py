@@ -11,9 +11,9 @@ class ProdutoViewSet(ModelViewSet):
     pagination_class = ProdutoPagination
 
     def get_queryset(self):
-        sexo = self.request.query_params.get("sexo")
+        genero = self.request.query_params.get("genero")
 
-        if sexo != "Todos":
-            return Produto.objects.filter(sexo=sexo)
+        if genero != "Todos":
+            return Produto.objects.filter(genero=genero)
         else:
             return Produto.objects.all()

@@ -5,5 +5,9 @@ from core.serializers import EnderecoSerializer
 
 
 class EnderecoViewSet(ModelViewSet):
-    queryset = Endereco.objects.all()
     serializer_class = EnderecoSerializer
+
+    def get_queryset(self):
+        usuario = self.request.user
+
+        return Endereco.objects.filter(usuario=usuario)

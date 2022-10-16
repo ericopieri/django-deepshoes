@@ -22,7 +22,7 @@ from core.views import (
 
 router = DefaultRouter()
 router.register(r"api/usuarios", UsuarioViewSet, basename="usuarios")
-router.register(r"api/enderecos", EnderecoViewSet)
+router.register(r"api/enderecos", EnderecoViewSet, basename="enderecos")
 router.register(r"api/cartoes", CartaoViewSet)
 router.register(r"api/cores", CorViewSet)
 router.register(r"api/forma_pagamento", Forma_PagamentoViewSet)

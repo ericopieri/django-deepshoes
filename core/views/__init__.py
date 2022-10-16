@@ -9,3 +9,4 @@ from .tamanho import TamanhoViewSet
 from .produto import ProdutoViewSet
 from .pedido import PedidoViewSet
 from .avaliacao import AvaliacaoViewSet
+from .carrinho import CarrinhoViewSet

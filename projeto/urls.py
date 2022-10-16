@@ -17,6 +17,7 @@ from core.views import (
     ItensCompraViewSet,
     PedidoViewSet,
     AvaliacaoViewSet,
+    CarrinhoViewSet,
 )
 
 router = DefaultRouter()
@@ -31,6 +32,7 @@ router.register(r"api/produtos", ProdutoViewSet, basename="produtos")
 router.register(r"api/itens_pedido", ItensCompraViewSet)
 router.register(r"api/pedidos", PedidoViewSet, basename="pedidos")
 router.register(r"api/avaliacoes", AvaliacaoViewSet)
+router.register(r"api/carrinho", CarrinhoViewSet, basename="carrinho")
 
 
 urlpatterns = [

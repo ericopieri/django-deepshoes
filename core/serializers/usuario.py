@@ -3,7 +3,7 @@ from rest_framework.serializers import ModelSerializer
 from core.models import Usuario
 
 
-class UsuarioSerializer(ModelSerializer):
+class UsuarioPostSerializer(ModelSerializer):
     class Meta:
         model = Usuario
         fields = "__all__"
@@ -15,3 +15,17 @@ class UsuarioSerializer(ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+
+class UsuarioSerializer(ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = (
+            "id",
+            "email",
+            "nome",
+            "sobrenome",
+            "sexo",
+            "contato",
+            "dt_nasc",
+        )

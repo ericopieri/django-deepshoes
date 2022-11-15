@@ -8,4 +8,4 @@ from .marca import MarcaSerializer
 from .pedido import PedidoSerializer
 from .produto import ProdutoSerializer
 from .tamanho import TamanhoSerializer
-from .usuario import UsuarioSerializer
+from .usuario import UsuarioSerializer, UsuarioPostSerializer

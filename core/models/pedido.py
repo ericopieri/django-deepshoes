@@ -17,10 +17,10 @@ class Pedido(models.Model):
     usuario_dono = models.ForeignKey(
         Usuario, on_delete=models.PROTECT, related_name="pedidos"
     )
-    data_entrega = models.DateField()
+    data_entrega = models.DateField(null=True)
     data_pedido = models.DateField(default=date.today)
     finalizado = models.BooleanField(default=False)
-    qtd_parcela = models.IntegerField()
+    qtd_parcela = models.IntegerField(null=True)
     valor_parcela = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     preco_total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 

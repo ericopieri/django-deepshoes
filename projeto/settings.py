@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "core",
     "rest_framework_simplejwt",
     "storages",
+    "drf_spectacular",
 ]
 
 REST_FRAMEWORK = {
@@ -46,6 +47,13 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Livraria API",
+    "DESCRIPTION": "API para gerenciamento de livraria, incluindo endpoints e documentação.",
+    "VERSION": "1.0.0",
 }
 
 MIDDLEWARE = [

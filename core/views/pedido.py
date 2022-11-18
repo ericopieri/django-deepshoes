@@ -1,11 +1,15 @@
 from rest_framework.viewsets import ModelViewSet
 
 from core.models import Pedido
-from core.serializers import PedidoSerializer
+from core.serializers import PedidoSerializer, PedidoPostSerializer
 
 
 class PedidoViewSet(ModelViewSet):
-    serializer_class = PedidoSerializer
+    def get_serializer_class(self):
+        if self.action == "create":
+            return PedidoPostSerializer
+
+        return PedidoSerializer
 
     def get_queryset(self):
         usuario = self.request.user

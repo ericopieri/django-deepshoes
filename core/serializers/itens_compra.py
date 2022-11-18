@@ -27,3 +27,12 @@ class ItensCompraSerializerNested(ModelSerializer):
 
     def get_sub_total(self, obj):
         return obj.qtd_produto * obj.produto.valor_unitario
+
+
+class CriarEditarItensCompraSerializer(ModelSerializer):
+    class Meta:
+        model = ItensCompra
+        fields = (
+            "produto",
+            "qtd_produto",
+        )

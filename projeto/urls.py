@@ -36,7 +36,7 @@ router.register(r"tamanhos", TamanhoViewSet)
 router.register(r"produtos", ProdutoViewSet, basename="produtos")
 router.register(r"itens_pedido", ItensCompraViewSet)
 router.register(r"pedidos", PedidoViewSet, basename="pedidos")
-router.register(r"avaliacoes", AvaliacaoViewSet)
+router.register(r"avaliacoes", AvaliacaoViewSet, basename="avaliacoes")
 router.register(r"carrinho", CarrinhoViewSet, basename="carrinho")
 
 

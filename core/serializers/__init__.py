@@ -1,4 +1,4 @@
-from .avaliacao import AvaliacaoSerializer
+from .avaliacao import AvaliacaoSerializer, AvaliacaoNestedSerializer
 from .cartao import CartaoSerializer
 from .cor import CorSerializer
 from .endereco import EnderecoSerializer

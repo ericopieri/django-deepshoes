@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer, CharField, SerializerMethodField
 
 from core.models import Produto, Avaliacao
+from core.serializers import AvaliacaoNestedSerializer
 
 
 class ProdutoSerializer(ModelSerializer):
@@ -8,6 +9,7 @@ class ProdutoSerializer(ModelSerializer):
     tamanho = CharField(source="tamanho.descricao")
     marca = CharField(source="marca.descricao")
     porcentagem_recomendado = SerializerMethodField()
+    avaliacoes = AvaliacaoNestedSerializer(many=True)
 
     class Meta:
         model = Produto

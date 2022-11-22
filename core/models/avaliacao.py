@@ -1,14 +1,14 @@
 from django.db import models
 
-from core.models.itens_compra import ItensCompra
+from core.models.itens_compra import Produto
 from core.models.usuario import Usuario
 
 from datetime import datetime
 
 
 class Avaliacao(models.Model):
-    produto_avaliado = models.ForeignKey(
-        ItensCompra, on_delete=models.PROTECT, related_name="avaliacoes"
+    produto = models.ForeignKey(
+        Produto, on_delete=models.PROTECT, related_name="avaliacoes"
     )
     usuario = models.ForeignKey(
         Usuario, on_delete=models.PROTECT, related_name="avaliacoes"

@@ -156,6 +156,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # AMAZON S3
 
+# para nova versão!!!
+
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")

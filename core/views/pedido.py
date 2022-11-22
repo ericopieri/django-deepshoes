@@ -6,10 +6,10 @@ from core.serializers import PedidoSerializer, PedidoPostSerializer
 
 class PedidoViewSet(ModelViewSet):
     def get_serializer_class(self):
-        if self.action == "create":
-            return PedidoPostSerializer
+        if self.action == "list" or self.action == "retrieve":
+            return PedidoSerializer
 
-        return PedidoSerializer
+        return PedidoPostSerializer
 
     def get_queryset(self):
         usuario = self.request.user

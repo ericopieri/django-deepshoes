@@ -50,12 +50,12 @@ class PedidoPostSerializer(ModelSerializer):
     def update(self, instance, validated_data):
         itens = validated_data.pop("itens")
 
-        if itens is not None:
+        if itens:
             instance.itens.all().delete()
 
             for item in itens:
-                ItensCompra.objects.create(compra=instance, **item)
+                ItensCompra.objects.create(pedido=instance, **item)
 
-        instance.save()
+            instance.save()
 
         return instance

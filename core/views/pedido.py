@@ -12,9 +12,14 @@ class PedidoViewSet(ModelViewSet):
         return PedidoPostSerializer
 
     def get_queryset(self):
+        concluidos = self.request.query_params.get("concluidos")
+
         usuario = self.request.user
 
         if usuario.admin:
             return Pedido.objects.all()
+
+        if concluidos:
+            return Pedido.objects.filter(usuario_dono=usuario, finalizado=True)
 
         return Pedido.objects.filter(usuario_dono=usuario)

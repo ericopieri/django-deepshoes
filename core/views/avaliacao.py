@@ -17,4 +17,4 @@ class AvaliacaoViewSet(ModelViewSet):
     def get_queryset(self):
         id = self.request.query_params.get("id")
 
-        return Avaliacao.objects.filter(id=id).order_by("data_avaliacao")
+        return Avaliacao.objects.filter(produto=id).order_by("data_avaliacao")

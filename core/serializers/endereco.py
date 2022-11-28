@@ -14,6 +14,7 @@ class EnderecoSerializer(ModelSerializer):
             "numero",
             "complemento",
             "referencia",
+            "id",
         )
 
     def create(self, validated_data):

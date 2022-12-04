@@ -49,6 +49,16 @@ class PedidoPostSerializer(ModelSerializer):
     def update(self, instance, validated_data):
         itens = validated_data.pop("itens")
 
+        instance.finalizado = validated_data.get("finalizado", instance.finalizado)
+        instance.qtd_parcela = validated_data.get("qtd_parcela", instance.qtd_parcela)
+        instance.valor_parcela = validated_data.get(
+            "valor_parcela", instance.valor_parcela
+        )
+        instance.preco_final = validated_data.get("preco_final", instance.preco_final)
+        instance.endereco_entrega = validated_data.get(
+            "endereco_entrega", instance.endereco_entrega
+        )
+
         if itens:
             instance.itens.all().delete()
 

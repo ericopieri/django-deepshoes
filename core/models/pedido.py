@@ -22,6 +22,7 @@ class Pedido(models.Model):
     finalizado = models.BooleanField(default=False)
     qtd_parcela = models.IntegerField(null=True)
     valor_parcela = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    preco_final = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     def __str__(self):
         return f"{self.preco_total} - {self.data_pedido} - {self.usuario_dono}"

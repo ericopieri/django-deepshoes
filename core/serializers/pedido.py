@@ -34,7 +34,6 @@ class PedidoPostSerializer(ModelSerializer):
             "id",
             "itens",
             "usuario_dono",
-            "preco_total",
         )
 
     def create(self, validated_data):

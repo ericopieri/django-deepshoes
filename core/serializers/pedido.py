@@ -5,11 +5,15 @@ from rest_framework.serializers import (
     CurrentUserDefault,
 )
 
+from decouple import config
+
 from core.serializers.itens_compra import (
     ItensCompraSerializerNested,
     CriarEditarItensCompraSerializer,
 )
 from core.models import Pedido, ItensCompra, Produto
+
+from django.core.mail import send_mail
 
 
 class PedidoSerializer(ModelSerializer):
@@ -62,6 +66,15 @@ class PedidoPostSerializer(ModelSerializer):
         instance.endereco_entrega = validated_data.get(
             "endereco_entrega", instance.endereco_entrega
         )
+
+        if validated_data["finalizado"] == True:
+            email = self.request.user.email
+            send_mail(
+                "Cadastro realizado com sucesso",
+                "Pedido finalizado! Obrigado pela preferência, ",
+                config("EMAIL_HOST_USER"),
+                email,
+            )
 
         if itens:
             instance.itens.all().delete()

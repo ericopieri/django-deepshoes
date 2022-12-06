@@ -68,7 +68,7 @@ class PedidoPostSerializer(ModelSerializer):
         )
 
         if validated_data.get("finalizado", None):
-            email = self.request.user.email
+            email = self.context.get["request"].user.email
             send_mail(
                 "Cadastro realizado com sucesso",
                 "Pedido finalizado! Obrigado pela preferência, ",

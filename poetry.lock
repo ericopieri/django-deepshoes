@@ -267,6 +267,21 @@ python-jose = ["python-jose (==3.3.0)"]
 test = ["cryptography", "pytest-cov", "pytest-django", "pytest-xdist", "pytest", "tox"]
 
 [[package]]
+name = "drf-extra-fields"
+version = "3.4.1"
+description = "Additional fields for Django Rest Framework."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+Django = ">=2.2"
+djangorestframework = ">=3.9.2"
+
+[package.extras]
+base64imagefield = ["Pillow (>=6.2.1)"]
+
+[[package]]
 name = "drf-spectacular"
 version = "0.24.2"
 description = "Sane and flexible OpenAPI 3 schema generation for Django REST framework"
@@ -691,7 +706,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "flake8 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "11599681fd89dc8cf20189e840b1acc6e7cb93a68c7a6f5a4d6d9bf750a3d70d"
+content-hash = "62aab2f8d988995aa9d0a2f12250e70db15888b0ef9c432d45c3b9feb0184d8b"
 
 [metadata.files]
 asgiref = [
@@ -719,6 +734,7 @@ djangorestframework = [
     {file = "djangorestframework-3.13.1.tar.gz", hash = "sha256:0c33407ce23acc68eca2a6e46424b008c9c02eceb8cf18581921d0092bc1f2ee"},
 ]
 djangorestframework-simplejwt = []
+drf-extra-fields = []
 drf-spectacular = []
 flake8 = []
 gunicorn = []

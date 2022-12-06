@@ -10,6 +10,6 @@ from .itens_compra import (
 )
 from .marca import MarcaSerializer
 from .pedido import PedidoSerializer, PedidoPostSerializer
-from .produto import ProdutoSerializer
+from .produto import ProdutoSerializer, ProdutoPostSerializer
 from .tamanho import TamanhoSerializer
 from .usuario import UsuarioSerializer, UsuarioPostSerializer

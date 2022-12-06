@@ -1,4 +1,10 @@
-from rest_framework.serializers import ModelSerializer, CharField, SerializerMethodField
+from rest_framework.serializers import (
+    ModelSerializer,
+    CharField,
+    SerializerMethodField,
+    ValidationError,
+)
+from drf_extra_fields.fields import Base64ImageField
 
 from core.models import Produto, Avaliacao
 from core.serializers import AvaliacaoNestedSerializer
@@ -24,3 +30,35 @@ class ProdutoSerializer(ModelSerializer):
             return round((porcentagem_recomendado / porcentagem_geral) * 100, 2)
 
         return 0
+
+
+class ProdutoPostSerializer(ModelSerializer):
+    imagem = Base64ImageField()
+
+    class Meta:
+        model = Produto
+        fields = (
+            "id",
+            "cor",
+            "marca",
+            "tamanho",
+            "valor_unitario",
+            "nome",
+            "descricao",
+            "genero",
+            "qtd_estoque",
+            "imagem",
+        )
+
+    def create(self, validated_data):
+        permissao = self.context.get("request").user.admin
+
+        if permissao:
+            produto = Produto.objects.create(**validated_data)
+            return produto
+        else:
+            raise ValidationError(
+                {
+                    "permissao": "Você não tem o nível de permissão para cadastrar um produto!"
+                }
+            )

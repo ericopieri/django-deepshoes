@@ -67,7 +67,7 @@ class PedidoPostSerializer(ModelSerializer):
             "endereco_entrega", instance.endereco_entrega
         )
 
-        if validated_data.get("finalizado") == True:
+        if validated_data.get("finalizado", None):
             email = self.request.user.email
             send_mail(
                 "Cadastro realizado com sucesso",

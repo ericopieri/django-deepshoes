@@ -73,7 +73,7 @@ class PedidoPostSerializer(ModelSerializer):
                 "Cadastro realizado com sucesso",
                 "Pedido finalizado! Obrigado pela preferência, ",
                 config("EMAIL_HOST_USER"),
-                (email),
+                [f"{email}"],
             )
 
         if itens:

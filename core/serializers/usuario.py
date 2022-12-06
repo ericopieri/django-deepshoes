@@ -28,4 +28,5 @@ class UsuarioSerializer(ModelSerializer):
             "sexo",
             "contato",
             "dt_nasc",
+            "admin",
         )

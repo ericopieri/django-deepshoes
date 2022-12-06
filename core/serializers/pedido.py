@@ -82,9 +82,6 @@ class PedidoPostSerializer(ModelSerializer):
             for item in itens:
                 ItensCompra.objects.create(pedido=instance, **item)
 
-        if len(itens) == 0:
-            instance.delete()
-
         instance.save()
 
         return instance

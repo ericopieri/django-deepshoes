@@ -42,6 +42,7 @@ class PedidoPostSerializer(ModelSerializer):
             "qtd_parcela",
             "finalizado",
             "preco_final",
+            "endereco_entrega",
         )
 
     def create(self, validated_data):

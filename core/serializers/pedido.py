@@ -71,7 +71,7 @@ class PedidoPostSerializer(ModelSerializer):
             email = self.context.get("request").user.email
             send_mail(
                 "Pedido Finalizado",
-                "Obrigado por comprar com a gente!",
+                f"Olá! Seu pedido foi confirmado com sucesso! 🥳\n\nObrigado por confiar em nosso trabalho, esperamos que goste do seu novo tênis! 🤩\n\nAcompanhe seu pedido através do código de rastreio: RMADUK24632\n\n🚚 DEEPSHOES 👟",
                 config("EMAIL_HOST_USER"),
                 [email],
             )

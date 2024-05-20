@@ -1,19 +1,20 @@
-# Backend do meu Projeto Integrador!
+# Backend for DeepShoes Sneak Store!
 
-## Bem vindo, rode esse projeto executando os seguintes comandos...
+## Welcome! Run this project by executing the following commands...
 
-
-### Instalando os necessários...
+### Installing Dependencies...
 ```
 poetry install
 ```
 
-### Entrando e criando a VirtualEnv...
+### Creating and Activating the Virtual Environment...
 ```
 poetry shell
 ```
 
-### Botando o projeto pra rodar (necessario estar no mesmo diretório que o arquivo 'manage.py')...
+### Running the Project (make sure you are in the same directory as the 'manage.py' file)...
 ```
-manage.py runserver
+poetry run python ./manage.py runserver
 ```
+
+Make sure you have [Poetry](https://python-poetry.org/docs/#installation) installed to manage dependencies.
